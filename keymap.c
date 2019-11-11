@@ -26,7 +26,7 @@ enum layer_names {
 #define RAISE MO(_RAISE)
 
 enum custom_keycodes {
-  GIT_ADD,
+  GIT_ADD = SAFE_RANGE,
   GIT_COMMIT,
   GIT_PUSH
 };
@@ -35,13 +35,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case GIT_ADD:
       if (record->event.pressed) {
-        // when keycode GIT_ADD is pressed
         SEND_STRING("git add --all");
       }
       break;
     case GIT_COMMIT:
       if (record->event.pressed) {
-        // when keycode GIT_COMMIT is pressed
         SEND_STRING("git commit -m");
       }
       break;
@@ -106,7 +104,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   /* RAISE
    *        ,-----------------------------------------------------------------------------------.
-   *        |TOGRGB|      |      |      |Sat(-)|Hue(-)|Hue(+)|Sat(+)|      |      |Brght-|Brght+|
+   *        | g_add|g_comm|g_push|      |Sat(-)|Hue(-)|Hue(+)|Sat(+)|      |      |Brght-|Brght+|
    *        |------+------+------+------+------+-------------+------+------+------+------+------|
    *        |  `   |      |      |      |      |      |      |      |      |      |      |   =  |
    *        |+------+------+------+------+-----+------+------+------+------+------+------+------|
