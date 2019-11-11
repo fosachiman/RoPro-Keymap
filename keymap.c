@@ -26,41 +26,33 @@ enum layer_names {
 #define RAISE MO(_RAISE)
 
 enum custom_keycodes {
-  GITADDALL,
-  GITCOMMIT,
-  GITPUSH
-}
+  GIT_ADD,
+  GIT_COMMIT,
+  GIT_PUSH
+};
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-    case GITADDALL:
+    case GIT_ADD:
       if (record->event.pressed) {
-        // when keycode GITADDALL is pressed
+        // when keycode GIT_ADD is pressed
         SEND_STRING("git add --all");
-      } else {
-        // when keycode GITADDALL is released
       }
       break;
-    case GITCOMMIT:
+    case GIT_COMMIT:
       if (record->event.pressed) {
-        // when keycode GITCOMMIT is pressed
+        // when keycode GIT_COMMIT is pressed
         SEND_STRING("git commit -m");
-      } else {
-        // when keycode GITCOMMIT is released
       }
       break;
-    case GITPUSH:
+    case GIT_PUSH:
       if (record->event.pressed) {
-        // when keycode GITPUSH is pressed
         SEND_STRING("git push");
-      } else {
-        // when keycode GITPUSH is released
       }
       break;
   }
   return true;
 };
-
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -128,7 +120,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * `------------------------------------------------------------------------------------------'
    */
     [_RAISE] = LAYOUT(
-              GITADDALL,  GITCOMMIT,  GITPUSH,  KC_TRNS,  RGB_SAD,  RGB_HUD,  RGB_HUI,  RGB_SAI,  KC_TRNS,  KC_TRNS,  RGB_VAD,  RGB_VAI,
+              GIT_ADD,  GIT_COMMIT,  GIT_PUSH,  KC_TRNS,  RGB_SAD,  RGB_HUD,  RGB_HUI,  RGB_SAI,  KC_TRNS,  KC_TRNS,  RGB_VAD,  RGB_VAI,
               KC_GRAVE, KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS, KC_EQUAL,
     KC_NLCK,  KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC, 
     KC_HOME,  KC_DEL,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, KC_BSLS,
@@ -145,4 +137,4 @@ void encoder_update_user(uint8_t index, bool clockwise) {
             tap_code(KC__VOLDOWN);
         }
     }
-}
+};
